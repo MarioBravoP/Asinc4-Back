@@ -10,17 +10,7 @@ const data_routes = require("./routes/data");
 
 const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
 
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('No permitido por CORS'));
-    }
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+app.use(cors());
 
 
 const mongoURI = process.env.MONGO_URI;
