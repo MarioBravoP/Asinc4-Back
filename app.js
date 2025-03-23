@@ -4,14 +4,6 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const errorHandler = require('./middlewares/errorHandler');
 
-if (process.env.NODE_ENV === 'development') {
-  dotenv.config({ path: '.env.development' }); 
-} else if (process.env.NODE_ENV === 'production') {
-  dotenv.config({ path: '.env.production' });
-} else {
-  dotenv.config();
-}
-
 const app = express();
 const data_routes = require("./routes/data");
 
