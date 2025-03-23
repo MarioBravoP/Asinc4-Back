@@ -1,4 +1,4 @@
-const dotenv = require('dotenv');
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -8,7 +8,7 @@ const app = express();
 const data_routes = require("./routes/data");
 
 
-const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
+const allowedOrigins = process.env.ALLOWED_ORIGINS;
 
 app.use(cors({
   origin: allowedOrigins,
@@ -19,7 +19,12 @@ app.use(cors({
 
 const mongoURI = process.env.MONGO_URI;
 
-mongoose.connect(mongoURI)
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000,
+  socketTimeoutMS: 45000,
+})
 .then(() => console.log("Conectado a MongoDB Atlas"))
 .catch(err => console.error("Error conectando a MongoDB:", err));
 
