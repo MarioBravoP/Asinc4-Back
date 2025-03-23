@@ -3,7 +3,7 @@ const dataController = require('../controllers/dataController')
 const router = express.Router();
 
 // Home
-router.get("/data", (req, res) => {
+router.get("/", (req, res) => {
   dataController.getAllData(req, res);
 });
 
